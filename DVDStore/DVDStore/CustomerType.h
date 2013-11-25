@@ -25,6 +25,8 @@ public:
 	void setAccountNumber(string accountNumber);
 	void rentDVD(videoType dvd);
 	void returnDVD(videoType dvd);
+
+	string getAccountNumber() const;
 };
 
 void CustomerType::printAccountInformation()
@@ -55,5 +57,9 @@ void CustomerType::returnDVD(videoType dvd)
 	videosCheckedOut.videoCheckOut(dvd.getTitle());
 }
 
+string CustomerType::getAccountNumber() const
+{
+	return accountNumber;
+}
 
 #endif
