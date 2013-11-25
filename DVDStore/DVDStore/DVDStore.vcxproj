@@ -74,15 +74,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CustomerType.h" />
     <ClInclude Include="linkedList.h" />
+    <ClInclude Include="PersonType.h" />
     <ClInclude Include="unorderedLinkedList.h" />
     <ClInclude Include="videoListType.h" />
     <ClInclude Include="videoType.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PersonType.cpp" />
     <ClCompile Include="testVideoStore.cpp" />
     <ClCompile Include="videoListTypeImp.cpp" />
     <ClCompile Include="videoTypeImp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="videoDat.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

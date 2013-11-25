@@ -27,6 +27,12 @@
     <ClInclude Include="videoType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomerType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="testVideoStore.cpp">
@@ -38,5 +44,11 @@
     <ClCompile Include="videoTypeImp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PersonType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="videoDat.txt" />
   </ItemGroup>
 </Project>

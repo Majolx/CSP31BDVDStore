@@ -9,10 +9,13 @@
 #ifndef _CUSTOMER_TYPE_H
 #define _CUSTOMER_TYPE_H
 
+#include <iostream>
 #include <string>
 #include "PersonType.h"
 #include "videoListType.h"
 #include "videoType.h"
+
+using namespace std;
 
 class CustomerType : public PersonType
 {
