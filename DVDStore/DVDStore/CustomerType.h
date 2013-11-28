@@ -17,52 +17,127 @@
 
 using namespace std;
 
-class CustomerType : public PersonType
+template <class Type>
+struct nodeType
+{
+	Type info;
+	nodeTye<Type> *link;
+};
+
+template <class Type>
+class CustomerType : public PersonType<Type>
 {
 private:
+	nodeType<Type> *first;
 	string accountNumber;
 	videoListType videosCheckedOut;
 public:
 	void printAccountInformation();
 	void printAccountNumber();
-	void setAccountNumber(string accountNumber);
+	void setNameAndAccountNumber(string firstName, string lastName, string accountNumber);
 	void rentDVD(videoType dvd);
 	void returnDVD(videoType dvd);
 
+	CustomerType();
+	CustomerType(string firstName, string lastName, string accNum);
+	
 	string getAccountNumber() const;
 };
 
-void CustomerType::printAccountInformation()
+template <class Type>
+void CustomerType<Type>::printAccountInformation()
 {
-	cout << "Name: " << this->getName() << endl;
+	nodeType<Type> *current;
+
+	cout << "Name: ";
+	this->print(); 
+	cout << endl;
 	cout << "Account#: " << accountNumber << endl;
 	cout << "Currently checked out: " << endl;
-	videosCheckedOut.videoPrintTitle();
+	while (current != NULL)
+	{
+		cout << current->info;
+		current = current->link;
+	}
 }
 
-void CustomerType::printAccountNumber()
+template <class Type>
+void CustomerType<Type>::printAccountNumber()
 {
 	cout << "Account#: " << accountNumber << endl;
 }
 
-void CustomerType::setAccountNumber(string accountNumber)
+template <class Type>
+void CustomerType<Type>::setNameAndAccountNumber(string firstName, string lastName, string accountNumber)
 {
 	this->accountNumber = accountNumber;
+	this->setName(firstName, lastName);
 }
 
-void CustomerType::rentDVD(videoType dvd)
+template <class Type>
+void CustomerType<Type>::rentDVD(videoType dvd)
 {
+	nodeType<Type> *current;
+
+	current = first;
 	videosCheckedOut.videoCheckIn(dvd.getTitle());
+	
+	if (first == NULL)
+	{
+		first = dvd.getTitle();
+	}
+	else
+	{
+		current = current->link;
+	}
 }
 
-void CustomerType::returnDVD(videoType dvd)
+template <class Type>
+void CustomerType<Type>::returnDVD(videoType dvd)
 {
+	nodeType<Type> *current;
+	nodeType<Type> *previousNode;
+
+	current = first;
+
 	videosCheckedOut.videoCheckOut(dvd.getTitle());
+	
+	if (dvd.getTitle() == first.info)
+	{
+		first = first->link;
+		delete current;
+	}
+	else
+	{
+		while (current != NULL)
+		{
+			previousNode = current;
+			current = current->link;
+			if (current == dvd.getTitle())
+			{
+				previousNode->link = current->link;
+				delete current;
+			}
+		}
+	}
 }
 
-string CustomerType::getAccountNumber() const
+template <class Type>
+string CustomerType<Type>::getAccountNumber() const
 {
 	return accountNumber;
+}
+
+template <class Type>
+CustomerType<Type>::CustomerType()
+{
+	this->setNameAndAccountNumber("", "", "");
+}
+
+template <class Type>
+CustomerType<Type>::CustomerType(string firstName, string lastName, string accNum)
+{
+	this->setNameAndAccountNumber(firstName, lastName, accNum);
 }
 
 #endif

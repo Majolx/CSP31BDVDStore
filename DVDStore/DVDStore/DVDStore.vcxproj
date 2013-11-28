@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="customerListType.h" />
     <ClInclude Include="CustomerType.h" />
     <ClInclude Include="linkedList.h" />
     <ClInclude Include="PersonType.h" />
