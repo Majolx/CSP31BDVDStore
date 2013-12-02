@@ -37,6 +37,7 @@ public:
 	void setNameAndAccountNumber(string firstName, string lastName, string accountNumber);
 	void rentDVD(videoType dvd);
 	void returnDVD(videoType dvd);
+	void load();
 
 	CustomerType();
 	CustomerType(string firstName, string lastName, string accNum);
@@ -142,4 +143,9 @@ CustomerType<Type>::CustomerType(string firstName, string lastName, string accNu
 	this->setNameAndAccountNumber(firstName, lastName, accNum);
 }
 
+template <class Type>
+void CustomerType<Type>::load()
+{
+
+}
 #endif
