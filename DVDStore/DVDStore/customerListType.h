@@ -13,14 +13,6 @@
 using namespace std;
 
 template <class Type>
-struct customerNode
-{
-	Type info;
-
-	customerNode<Type> *link;
-};
-
-template <class Type>
 class customerListType : public CustomerType<Type>
 {
 public:

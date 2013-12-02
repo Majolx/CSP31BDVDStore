@@ -3,7 +3,7 @@
 #include <string>
 #include "videoType.h" 
 #include "videoListType.h"
-#include "CustomerListType.h"
+#include "customerListType.h"
 
 using namespace std; 
 

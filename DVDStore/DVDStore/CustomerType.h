@@ -18,17 +18,17 @@
 using namespace std;
 
 template <class Type>
-struct nodeType
+struct nodeTypeDvd
 {
 	Type info;
-	nodeTye<Type> *link;
+	nodeTypeDvd<Type> *link;
 };
 
 template <class Type>
 class CustomerType : public PersonType<Type>
 {
 private:
-	nodeType<Type> *first;
+	nodeTypeDvd<Type> *first;
 	string accountNumber;
 	videoListType videosCheckedOut;
 public:
@@ -48,7 +48,7 @@ public:
 template <class Type>
 void CustomerType<Type>::printAccountInformation()
 {
-	nodeType<Type> *current;
+	nodeTypeDvd<Type> *current;
 
 	cout << "Name: ";
 	this->print(); 
@@ -78,7 +78,7 @@ void CustomerType<Type>::setNameAndAccountNumber(string firstName, string lastNa
 template <class Type>
 void CustomerType<Type>::rentDVD(videoType dvd)
 {
-	nodeType<Type> *current;
+	nodeTypeDvd<Type> *current;
 
 	current = first;
 	videosCheckedOut.videoCheckIn(dvd.getTitle());
@@ -98,8 +98,8 @@ void CustomerType<Type>::rentDVD(videoType dvd)
 template <class Type>
 void CustomerType<Type>::returnDVD(videoType dvd)
 {
-	nodeType<Type> *current;
-	nodeType<Type> *previousNode;
+	nodeTypeDvd<Type> *current;
+	nodeTypeDvd<Type> *previousNode;
 
 	current = first;
 
