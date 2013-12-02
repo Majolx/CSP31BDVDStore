@@ -25,7 +25,7 @@ struct nodeTypeDvd
 };
 
 template <class Type>
-class CustomerType : public PersonType<Type>
+class CustomerType : public PersonType
 {
 private:
 	nodeTypeDvd<Type> *first;

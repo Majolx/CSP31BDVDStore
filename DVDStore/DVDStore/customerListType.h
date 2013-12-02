@@ -13,6 +13,13 @@
 using namespace std;
 
 template <class Type>
+struct customerNode
+{
+	Type info;
+	customerNode<Type> *link;
+};
+
+template <class Type>
 class customerListType : public CustomerType<Type>
 {
 public:
@@ -125,9 +132,6 @@ void customerListType<Type>::saveData(ofstream& outFile)
 		outFile << currentNode->info.getFirstName() << " " << currentNode->info.getLastName() << endl;
 		outFile << currentNode->info.getAccountNumber() << endl;
 		outFile << endl;
-
-		if(
-		currentNode = currentNode->link;
 	}
 }
 #endif
