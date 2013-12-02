@@ -3,7 +3,7 @@
 #include <string>
 #include "videoType.h" 
 #include "videoListType.h"
-#include "CustomerListType.h"
+#include "customerListType.h"
 
 using namespace std; 
 
@@ -14,7 +14,7 @@ void displayMenu();
 int main()
 {
     videoListType videoList;
-	CustomerListType customerList;
+	customerListType customerList;
     int choice;
     char ch;
     string title;
