@@ -33,6 +33,20 @@ int main()
         //create the video list
     createVideoList(infile, videoList);
     infile.close();
+	ifstream infile2;
+
+           //open the input file
+    infile2.open("customers.txt");
+    if (!infile2)
+    {
+        cout << "The input file does not exist. "
+             << "The program terminates!!!" << endl;
+        return 1;
+    }
+
+        //create the customer list
+    customerListType(infile2, customerList);
+    infile2.close();
 
         //show the menu
     displayMenu();
