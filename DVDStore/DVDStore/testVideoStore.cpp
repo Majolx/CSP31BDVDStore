@@ -14,7 +14,7 @@ void displayMenu();
 int main()
 {
     videoListType videoList;
-	CustomerListType customerList;
+	customerListType customerList;
     int choice;
     char ch;
     string title;
