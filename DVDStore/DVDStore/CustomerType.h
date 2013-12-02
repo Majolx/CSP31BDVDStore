@@ -89,6 +89,8 @@ void CustomerType<Type>::rentDVD(videoType dvd)
 	else
 	{
 		current = current->link;
+		if (current == NULL)
+			current = dvd.getTitle();
 	}
 }
 

@@ -25,7 +25,11 @@ class customerListType : public CustomerType<Type>
 {
 public:
 	void newCustomer(const Type& newPerson);
-	bool validateAccount(string accNum);
+	void deleteAccount(const Type& person);
+	bool searchAccount(string accNum);
+	void saveData(ofstream& outFile);
+	void loadData();
+
 
 private:
 	customerNode<Type> *first;
@@ -58,4 +62,80 @@ void customerListType<Type>::newCustomer(const Type& newPerson)
 
 }
 
+template <class Type>
+void customerListType<Type>::deleteAccount(const Type& person)
+{
+	customerNode<Type> *previousNode;
+	customerNode<Type> *currentNode;
+	customerNode<Type> *nodeToBeConnected;
+
+	if (first->info == accNum)
+	{
+		first = first->link;
+		delete first;
+	}
+	else
+	{
+		currentNode = first;
+
+		while (currentNode != NULL)
+		{
+			previousNode = currentNode;
+			currentNode = currentNode->link;
+			if (currentNode->info == accNum)
+			{
+				nodeToBeConnected = currentNode->link;
+				delete currentNode;
+				previousNode->link = nodeToBeConnected->info;
+			}
+			else if (currentNode->link == NULL)
+				cout << "Account not found." << endl;
+				
+		}
+	}
+}
+
+template <class Type>
+bool customerListType<Type>::searchAccount(string accNum)
+{
+	customerNode<Type> *currentNode;
+
+	if (first->info == accNum)
+	{
+		return true;
+	}
+	else
+	{
+		currentNode = first;
+
+		while (currentNode != NULL)
+		{
+			currentNode = currentNode->link;
+
+			if (currentNode == accNUm)
+				return true;
+			else if (currentNode->link == NULL)
+				return false;
+		}
+	}
+}
+
+template <class Type>
+void customerListType<Type>::saveData(ofstream& outFile)
+{
+	customerNode<Type> *currentNode;
+	currentNode = first;
+
+	int entryCount = 0;
+
+	while (currentNode != NULL)
+	{
+		outFile << currentNode->info.getFirstName() << " " << currentNode->info.getLastName() << endl;
+		outFile << currentNode->info.getAccountNumber() << endl;
+		outFile << endl;
+
+		if(
+		currentNode = currentNode->link;
+	}
+}
 #endif
