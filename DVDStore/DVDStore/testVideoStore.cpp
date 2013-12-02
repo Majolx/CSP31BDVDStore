@@ -3,6 +3,7 @@
 #include <string>
 #include "videoType.h" 
 #include "videoListType.h"
+#include "CustomerListType.h"
 
 using namespace std; 
 
@@ -13,6 +14,7 @@ void displayMenu();
 int main()
 {
     videoListType videoList;
+	CustomerListType customerList;
     int choice;
     char ch;
     string title;
@@ -169,6 +171,22 @@ void createVideoList(ifstream& infile,
         getline(infile, title);
     }//end while
 }//end createVideoList
+void createCustomerList(ifstream& infile2, 
+                     customerListType& customerList)
+{
+    string firstName;
+    string lastName;
+    string acctNumber;
+	customerListType newCustomer;
+	while(infile2)
+	{
+	getline(infile2, firstName);
+	getline(infile2, lastName);
+	getline(infile2, acctNumber);
+	newCustomer.setNameAndAccountNumber(firstName, lastName, acctNumber);
+	customerListType.newCustomer(newCustomer);
+	}//end while
+}//end createCustomerList
 
 void displayMenu()
 {
