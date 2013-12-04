@@ -67,6 +67,8 @@ void RentedDvdList::printDvDList()
 {
 	nodeType<string> *current;
 
+	current = first;
+
 	while (current != NULL)
 	{
 		cout << current->info << endl;

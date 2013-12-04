@@ -31,12 +31,13 @@ public:
 	void rentDVD(videoType dvd);
 	void returnDVD(videoType dvd);
 	void printDvdRented();
+	bool operator==(const CustomerType other);
+	bool operator!=(const CustomerType other);
 
 	CustomerType();
 	CustomerType(string firstName, string lastName, string accNum);
 	
 	string getAccountNumber() const;
-	string getDvdList() const;
 };
 
 void CustomerType::printAccountInformation()
@@ -77,15 +78,31 @@ void CustomerType::printDvdRented()
 	rentedDvd.printDvDList();
 }
 
+bool CustomerType::operator==(const CustomerType other)
+{
+	if (this->accountNumber == other.accountNumber &&
+		this->getFirstName() == other.getFirstName() &&
+		this->getLastName() == other.getLastName())
+		return true;
+	else
+		return false;
+}
+
+bool CustomerType::operator!=(const CustomerType other)
+{
+	if (this->accountNumber != other.accountNumber &&
+		this->getFirstName() != other.getFirstName() &&
+		this->getLastName() != other.getLastName())
+		return true;
+	else
+		return false;
+}
+
 string CustomerType::getAccountNumber() const
 {
 	return accountNumber;
 }
 
-string CustomerType::getDvdList() const
-{
-	
-}
 CustomerType::CustomerType()
 {
 	this->setNameAndAccountNumber("", "", "");

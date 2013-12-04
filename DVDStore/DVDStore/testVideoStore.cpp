@@ -14,12 +14,14 @@ void displayMenu();
 int main()
 {
     videoListType videoList;
-	customerListType customerList;
     int choice;
     char ch;
     string title;
-
-    ifstream infile;
+	string firstName = "", lastName = "", accNum = "";
+	CustomerType newPerson;
+	customerListType customer;
+    
+	ifstream infile;
 
            //open the input file
     infile.open("videoDat.txt");
@@ -33,21 +35,7 @@ int main()
         //create the video list
     createVideoList(infile, videoList);
     infile.close();
-	ifstream infile2;
-
-           //open the input file
-    infile2.open("customers.txt");
-    if (!infile2)
-    {
-        cout << "The input file does not exist. "
-             << "The program terminates!!!" << endl;
-        return 1;
-    }
-
-        //create the customer list
-    customerListType(infile2, customerList);
-    infile2.close();
-
+	
         //show the menu
     displayMenu();
     cout << "Enter your choice: ";
@@ -138,6 +126,18 @@ int main()
             videoList.print();
             break;
 
+		case 7:
+			cout << "Enter first name: ";
+			getline(cin, firstName);
+			cout << "Enter last name: ";
+			getline(cin, lastName);
+			cout << "Enter an account number of your choice";
+			getline(cin, accNum);
+
+			newPerson.setNameAndAccountNumber(firstName, lastName, accNum);
+			customer.newCustomer(newPerson);
+			break;
+
         default: 
             cout << "Invalid selection." << endl;
         }//end switch
@@ -185,22 +185,6 @@ void createVideoList(ifstream& infile,
         getline(infile, title);
     }//end while
 }//end createVideoList
-void createCustomerList(ifstream& infile2, 
-                     customerListType& customerList)
-{
-    string firstName;
-    string lastName;
-    string acctNumber;
-	customerListType newCustomer;
-	while(infile2)
-	{
-	getline(infile2, firstName);
-	getline(infile2, lastName);
-	getline(infile2, acctNumber);
-	newCustomer.setNameAndAccountNumber(firstName, lastName, acctNumber);
-	customerListType.newCustomer(newCustomer);
-	}//end while
-}//end createCustomerList
 
 void displayMenu()
 {
@@ -214,5 +198,7 @@ void displayMenu()
     cout << "5: To print only the titles of all the videos."
          << endl;
     cout << "6: To print a list of all the videos." << endl;
+	cout << "7: Add an account" << endl;
+	cout << "8: Delete an account" << endl;
     cout << "9: To exit" << endl;
 } //end displayMenu

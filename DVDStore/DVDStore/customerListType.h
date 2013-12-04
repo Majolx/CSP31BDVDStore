@@ -20,9 +20,6 @@ public:
 	void deleteAccount(const CustomerType& person);
 	bool searchAccount(string accNum);
 	void saveData(ofstream& outFile);
-	void loadData();
-
-	customerListType();
 };
 
 void customerListType::newCustomer(const CustomerType& newPerson)
@@ -57,6 +54,8 @@ void customerListType::deleteAccount(const CustomerType& person)
 	nodeType<CustomerType> *currentNode;
 	nodeType<CustomerType> *nodeToBeConnected;
 	
+	currentNode = first;
+
 	while (currentNode != NULL)
 	{
 		if (currentNode->info.getAccountNumber() == person.getAccountNumber())
@@ -77,6 +76,8 @@ bool customerListType::searchAccount(string accNum)
 {
 	nodeType<CustomerType> *currentNode;
 
+	currentNode = first;
+
 	if (currentNode->info.getAccountNumber() == accNum)
 	{
 		return true;
@@ -91,23 +92,25 @@ bool customerListType::searchAccount(string accNum)
 
 			if (currentNode->info.getAccountNumber() == accNum)
 				return true;
-			else if (currentNode->link == NULL)
-				return false;
 		}
+		return false;
 	}
+
 }
 
-void customerListType<Type>::saveData(ofstream& outFile)
+void customerListType::saveData(ofstream& outFile)
 {
 	nodeType<CustomerType> *currentNode;
 
 	int entryCount = 0;
 
+	currentNode = first;
+
 	while (currentNode != NULL)
 	{
 		outFile << currentNode->info.getFirstName() << " " << currentNode->info.getLastName() << endl;
 		outFile << currentNode->info.getAccountNumber() << endl;
-		while (currentNode->info.get endl;
+		outFile << endl;
 	}
 }
 #endif
