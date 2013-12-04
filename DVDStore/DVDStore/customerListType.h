@@ -5,6 +5,7 @@
 #ifndef _customerListType_h
 #define _customerListType_h
 
+#include "unorderedLinkedList.h"
 #include "CustomerType.h"
 #include <iostream>
 #include <string>
@@ -12,35 +13,24 @@
 
 using namespace std;
 
-template <class Type>
-struct customerNode
-{
-	Type info;
-	customerNode<Type> *link;
-};
-
-template <class Type>
-class customerListType : public CustomerType<Type>
+class customerListType : public unorderedLinkedList<CustomerType>
 {
 public:
-	void newCustomer(const Type& newPerson);
-	void deleteAccount(const Type& person);
+	void newCustomer(const CustomerType& newPerson);
+	void deleteAccount(const CustomerType& person);
 	bool searchAccount(string accNum);
 	void saveData(ofstream& outFile);
 	void loadData();
 
-
-private:
-	customerNode<Type> *first;
+	customerListType();
 };
 
-template <class Type>
-void customerListType<Type>::newCustomer(const Type& newPerson)
+void customerListType::newCustomer(const CustomerType& newPerson)
 {
-	customerNode<Type> *currentNode;
-	customerNode<Type> *newNode;
+	nodeType<CustomerType> *currentNode;
+	nodeType<CustomerType> *newNode;
 	
-	newNode = new customerNode<Type>;
+	newNode = new nodeType<CustomerType>;
 	newNode->info = newPerson;
 	newNode->link = NULL;
 
@@ -61,45 +51,33 @@ void customerListType<Type>::newCustomer(const Type& newPerson)
 
 }
 
-template <class Type>
-void customerListType<Type>::deleteAccount(const Type& person)
+void customerListType::deleteAccount(const CustomerType& person)
 {
-	customerNode<Type> *previousNode;
-	customerNode<Type> *currentNode;
-	customerNode<Type> *nodeToBeConnected;
-
-	if (first->info == accNum)
+	nodeType<CustomerType> *previousNode;
+	nodeType<CustomerType> *currentNode;
+	nodeType<CustomerType> *nodeToBeConnected;
+	
+	while (currentNode != NULL)
 	{
-		first = first->link;
-		delete first;
-	}
-	else
-	{
-		currentNode = first;
-
-		while (currentNode != NULL)
+		if (currentNode->info.getAccountNumber() == person.getAccountNumber())
 		{
-			previousNode = currentNode;
-			currentNode = currentNode->link;
-			if (currentNode->info == accNum)
-			{
-				nodeToBeConnected = currentNode->link;
-				delete currentNode;
-				previousNode->link = nodeToBeConnected->info;
-			}
-			else if (currentNode->link == NULL)
-				cout << "Account not found." << endl;
-				
+			nodeToBeConnected = currentNode->link;
+			delete currentNode;
+			previousNode->link = nodeToBeConnected;
 		}
+		else if (currentNode->link == NULL)
+			cout << "Account not found." << endl;
+		
+		previousNode = currentNode;
+		currentNode = currentNode->link;
 	}
 }
 
-template <class Type>
-bool customerListType<Type>::searchAccount(string accNum)
+bool customerListType::searchAccount(string accNum)
 {
-	customerNode<Type> *currentNode;
+	nodeType<CustomerType> *currentNode;
 
-	if (first->info == accNum)
+	if (currentNode->info.getAccountNumber() == accNum)
 	{
 		return true;
 	}
@@ -111,7 +89,7 @@ bool customerListType<Type>::searchAccount(string accNum)
 		{
 			currentNode = currentNode->link;
 
-			if (currentNode == accNUm)
+			if (currentNode->info.getAccountNumber() == accNum)
 				return true;
 			else if (currentNode->link == NULL)
 				return false;
@@ -119,11 +97,9 @@ bool customerListType<Type>::searchAccount(string accNum)
 	}
 }
 
-template <class Type>
 void customerListType<Type>::saveData(ofstream& outFile)
 {
-	customerNode<Type> *currentNode;
-	currentNode = first;
+	nodeType<CustomerType> *currentNode;
 
 	int entryCount = 0;
 
@@ -131,7 +107,7 @@ void customerListType<Type>::saveData(ofstream& outFile)
 	{
 		outFile << currentNode->info.getFirstName() << " " << currentNode->info.getLastName() << endl;
 		outFile << currentNode->info.getAccountNumber() << endl;
-		outFile << endl;
+		while (currentNode->info.get endl;
 	}
 }
 #endif

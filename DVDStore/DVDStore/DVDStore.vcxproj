@@ -78,6 +78,7 @@
     <ClInclude Include="CustomerType.h" />
     <ClInclude Include="linkedList.h" />
     <ClInclude Include="PersonType.h" />
+    <ClInclude Include="RentedDvdList.h" />
     <ClInclude Include="unorderedLinkedList.h" />
     <ClInclude Include="videoListType.h" />
     <ClInclude Include="videoType.h" />
