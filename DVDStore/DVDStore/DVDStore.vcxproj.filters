@@ -56,5 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="videoDat.txt" />
+    <None Include="customers.txt" />
   </ItemGroup>
 </Project>

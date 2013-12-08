@@ -90,6 +90,7 @@
     <ClCompile Include="videoTypeImp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="customers.txt" />
     <None Include="videoDat.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

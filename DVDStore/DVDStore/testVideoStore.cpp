@@ -9,11 +9,18 @@ using namespace std;
 
 void createVideoList(ifstream& infile, 
                      videoListType& videoList);
+//////////////////////////////////////////
+void createCustomerList(ifstream& infile2, 
+                     customerListType& custList);
+/////////////////////////////////////////
 void displayMenu();
 
 int main()
 {
     videoListType videoList;
+	///////////////
+	customerListType custList;
+	/////////////
     int choice;
     char ch;
     string title;
@@ -35,7 +42,21 @@ int main()
         //create the video list
     createVideoList(infile, videoList);
     infile.close();
-	
+	///////////////////////////////////////////////////////////
+	ifstream infile2;
+           //open the input file
+    infile2.open("customers.txt");
+    if (!infile2)
+    {
+        cout << "The input file does not exist. "
+             << "The program terminates!!!" << endl;
+        return 1;
+    }
+
+        //create the customer list
+    createCustomerList(infile2, custList);
+    infile2.close();
+	///////////////////////////////////////////////////////////////
         //show the menu
     displayMenu();
     cout << "Enter your choice: ";
@@ -185,7 +206,25 @@ void createVideoList(ifstream& infile,
         getline(infile, title);
     }//end while
 }//end createVideoList
-
+/////////////////////////////////
+void createCustomerList(ifstream& infile2, 
+                     customerListType& custList)
+{
+    string firstName;
+    string lastName;
+    string id;
+	CustomerType cust;
+	while(infile2)
+	{
+	getline(infile2, firstName);
+	getline(infile2, lastName);
+	getline(infile2, id);
+	cust.setNameAndAccountNumber(firstName, lastName, id);
+	custList.newCustomer(cust);	//custList.insertFirst(cust);
+								//infile>>fname>>lname>>id;
+	}//end while
+}//end createCustomerList
+//////////////////////////////////////////////
 void displayMenu()
 {
     cout << "Select one of the following:" << endl;
