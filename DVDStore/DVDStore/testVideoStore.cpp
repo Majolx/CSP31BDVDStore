@@ -43,7 +43,7 @@ int main()
     createVideoList(infile, videoList);
     infile.close();
 	///////////////////////////////////////////////////////////
-	ifstream infile2;
+	/*ifstream infile2;
            //open the input file
     infile2.open("customers.txt");
     if (!infile2)
@@ -55,7 +55,7 @@ int main()
 
         //create the customer list
     createCustomerList(infile2, custList);
-    infile2.close();
+    infile2.close();*/
 	///////////////////////////////////////////////////////////////
         //show the menu
     displayMenu();
