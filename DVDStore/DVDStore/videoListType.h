@@ -56,6 +56,8 @@ public:
       //Function to print the titles of all the videos in 
       //the store.
 
+	videoType findDvd(string title);
+
  private:
     void searchVideoList(string title, bool& found,
                          nodeType<videoType>* &current) const;

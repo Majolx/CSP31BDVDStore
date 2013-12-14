@@ -9,21 +9,15 @@ using namespace std;
 
 void createVideoList(ifstream& infile, 
                      videoListType& videoList);
-//////////////////////////////////////////
-void createCustomerList(ifstream& infile2, 
-                     customerListType& custList);
-/////////////////////////////////////////
 void displayMenu();
 
 int main()
 {
     videoListType videoList;
-	///////////////
-	customerListType custList;
-	/////////////
     int choice;
     char ch;
     string title;
+	string accountNum;
 	string firstName = "", lastName = "", accNum = "";
 	CustomerType newPerson;
 	customerListType customer;
@@ -42,21 +36,10 @@ int main()
         //create the video list
     createVideoList(infile, videoList);
     infile.close();
-	///////////////////////////////////////////////////////////
-	ifstream infile2;
-           //open the input file
-    infile2.open("customers.txt");
-    if (!infile2)
-    {
-        cout << "The input file does not exist. "
-             << "The program terminates!!!" << endl;
-        return 1;
-    }
+	
+	//pointer to videoList
+	customer.setVideoList(videoList);
 
-        //create the customer list
-    createCustomerList(infile2, custList);
-    infile2.close();
-	///////////////////////////////////////////////////////////////
         //show the menu
     displayMenu();
     cout << "Enter your choice: ";
@@ -83,6 +66,8 @@ int main()
             break;
 
         case 2: 
+			cout << "Enter account number: ";
+			getline(cin, accountNum);
             cout << "Enter the title: ";
             getline(cin, title);
             cout << endl;
@@ -91,6 +76,7 @@ int main()
             {
                 if (videoList.isVideoAvailable(title))
                 {
+					customer.rentDvd(accountNum, title);
                     videoList.videoCheckOut(title);
                     cout << "Enjoy your movie: " 
                          << title << endl;
@@ -105,12 +91,15 @@ int main()
             break;
 
         case 3: 
+			cout << "Enter account number: ";
+			getline(cin, accountNum);
             cout << "Enter the title: ";
             getline(cin, title);
             cout << endl;
 
             if (videoList.videoSearch(title))
             {
+				customer.returnDvd(accountNum,title);
                 videoList.videoCheckIn(title);
                 cout << "Thanks for returning "
                      << title << endl;
@@ -148,15 +137,48 @@ int main()
             break;
 
 		case 7:
-			cout << "Enter first name: ";
-			getline(cin, firstName);
-			cout << "Enter last name: ";
-			getline(cin, lastName);
-			cout << "Enter an account number of your choice";
-			getline(cin, accNum);
+			int selection;
+			cout << "(1) Add or (2) Delete: ";
+			cin >> selection;
 
-			newPerson.setNameAndAccountNumber(firstName, lastName, accNum);
-			customer.newCustomer(newPerson);
+			if (selection == 1)
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Enter first name: ";
+				getline(cin, firstName);
+				cout << "Enter last name: ";
+				getline(cin, lastName);
+				cout << "Enter an account number of your choice: ";
+				getline(cin, accNum);
+				cout << endl;
+
+				newPerson.setNameAndAccountNumber(firstName, lastName, accNum);
+				customer.newCustomer(newPerson);
+			}
+			else if (selection == 2)
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Enter account number to delete: ";
+				getline(cin, accNum);
+				cout << endl;
+				customer.deleteAccount(accNum);
+			}
+			break;
+
+		case 8:
+			customer.printCustomerInfo();
+			cout << endl;
+			break;
+
+		case 9:
+			cout << "Enter account number: ";
+			cin >> accountNum;
+			cout << "Enter title: ";
+			cin >> title;
+
+			customer.rentDvd(accountNum, title);
 			break;
 
         default: 
@@ -169,6 +191,7 @@ int main()
         cin >> choice;     //get the next request
         cin.get(ch);
         cout << endl;
+
     }//end while
 
     return 0;
@@ -206,25 +229,7 @@ void createVideoList(ifstream& infile,
         getline(infile, title);
     }//end while
 }//end createVideoList
-/////////////////////////////////
-void createCustomerList(ifstream& infile2, 
-                     customerListType& custList)
-{
-    string firstName;
-    string lastName;
-    string id;
-	CustomerType cust;
-	while(infile2)
-	{
-	getline(infile2, firstName);
-	getline(infile2, lastName);
-	getline(infile2, id);
-	cust.setNameAndAccountNumber(firstName, lastName, id);
-	custList.newCustomer(cust);	//custList.insertFirst(cust);
-								//infile>>fname>>lname>>id;
-	}//end while
-}//end createCustomerList
-//////////////////////////////////////////////
+
 void displayMenu()
 {
     cout << "Select one of the following:" << endl;
@@ -238,6 +243,7 @@ void displayMenu()
          << endl;
     cout << "6: To print a list of all the videos." << endl;
 	cout << "7: Add an account" << endl;
-	cout << "8: Delete an account" << endl;
-    cout << "9: To exit" << endl;
+	cout << "8: Print account(s)" << endl;
+    cout << "9: To exit" << endl
+		;
 } //end displayMenu

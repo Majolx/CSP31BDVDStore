@@ -195,6 +195,7 @@ public:
       //Deletes all the nodes from the list.
       //Postcondition: The list object is destroyed. 
 
+	nodeType<Type>& getFirst();
 protected:
     int count;   //variable to store the number of 
                  //elements in the list
@@ -208,6 +209,13 @@ private:
       //               assigned to this list.
 };
 
+
+template <class Type>
+nodeType<Type>& linkedListType<Type>::getFirst()
+{
+	assert(first != NULL);
+	return first;
+}
 
 template <class Type>
 bool linkedListType<Type>::isEmptyList() const

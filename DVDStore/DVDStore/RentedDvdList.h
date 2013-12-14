@@ -9,8 +9,6 @@ using namespace std;
 
 class RentedDvdList : public unorderedLinkedList<string>
 {
-private:
-	nodeType<string> *first;
 public:
 	void insertDvd(string dvdTitle);
 	void deleteDvD(string dvdTitle);
@@ -19,17 +17,31 @@ public:
 
 void RentedDvdList::insertDvd(string title)
 {
+	nodeType<string> *newNode = new nodeType<string>;
+	newNode->info = title;
+	newNode->link = NULL;
+
 	nodeType<string> *current;
 
 	if (first == NULL)
-		first->info = title;
+	{	// Case where there is no list
+		first = newNode;
+	}
+	else if (first->link == NULL)
+	{	// Case where there is only one element
+		first->link = newNode;
+		return;
+	}
 	else
-	{
-		current = first->link;
+	{	// Case for multiple elements
+		current = first;
 
-		while (current != NULL)
+		while (current->link != NULL)
+		{
 			current = current->link;
-		current->info = title;
+		}
+
+		current->link = newNode;
 	}
 }
 
@@ -65,15 +77,21 @@ void RentedDvdList::deleteDvD(string title)
 
 void RentedDvdList::printDvDList()
 {
-	nodeType<string> *current;
+	nodeType<string> *current = new nodeType<string>;
 
 	current = first;
 
-	while (current != NULL)
+	if (first == NULL)
+		cout << "This account have not rented any DVD." << endl;
+	else
 	{
-		cout << current->info << endl;
-		current = current->link;
+		cout << "Currently checked out: " << endl;
+		while (current != NULL)
+		{
+			cout << current->info << endl;
+			current = current->link;			
+		}
+		cout << endl;
 	}
-	cout << endl;
 }
 #endif

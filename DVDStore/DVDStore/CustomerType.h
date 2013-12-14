@@ -1,11 +1,3 @@
-/**
- * CustomerType.h
- * A customer who uses the DVD Store program.
- *
- * Written by:	Mathew Larribas
- * Date:		November 25, 2013
-**/
-
 #ifndef _CUSTOMER_TYPE_H
 #define _CUSTOMER_TYPE_H
 
@@ -28,9 +20,9 @@ public:
 	void printAccountInformation();
 	void printAccountNumber();
 	void setNameAndAccountNumber(string firstName, string lastName, string accountNumber);
-	void rentDVD(videoType dvd);
-	void returnDVD(videoType dvd);
-	void printDvdRented();
+	void rentDVD(string title);
+	void returnDVD(string title);
+	void printDvdRented(CustomerType customer);
 	bool operator==(const CustomerType other);
 	bool operator!=(const CustomerType other);
 
@@ -44,10 +36,8 @@ void CustomerType::printAccountInformation()
 {
 	cout << "Name: ";
 	this->print(); 
-	cout << endl;
 	cout << "Account#: " << accountNumber << endl;
-	cout << "Currently checked out: " << endl;
-	videosCheckedOut.videoPrintTitle();
+	rentedDvd.printDvDList();
 }
 
 void CustomerType::printAccountNumber()
@@ -61,21 +51,19 @@ void CustomerType::setNameAndAccountNumber(string firstName, string lastName, st
 	this->setName(firstName, lastName);
 }
 
-void CustomerType::rentDVD(videoType dvd)
+void CustomerType::rentDVD(string title)
 {
-	videosCheckedOut.videoCheckIn(dvd.getTitle());
-	rentedDvd.insertDvd(dvd.getTitle());
+	rentedDvd.insertDvd(title);
 }
 
-void CustomerType::returnDVD(videoType dvd)
-{
-	videosCheckedOut.videoCheckOut(dvd.getTitle());
-	rentedDvd.deleteDvD(dvd.getTitle());
+void CustomerType::returnDVD(string title)
+{	
+	rentedDvd.deleteDvD(title);
 }
 
-void CustomerType::printDvdRented()
+void CustomerType::printDvdRented(CustomerType customer)
 {
-	rentedDvd.printDvDList();
+	customer.rentedDvd.printDvDList();
 }
 
 bool CustomerType::operator==(const CustomerType other)

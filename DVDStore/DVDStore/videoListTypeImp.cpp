@@ -5,6 +5,21 @@
 
 using namespace std; 
 
+videoType videoListType::findDvd(string title)
+{
+	nodeType<videoType> *current = NULL;
+
+	current = first;
+
+	while (current != NULL && current->info.getTitle() != title)
+		current = current->link;
+	if (current != NULL)
+		return current->info;
+	else
+		return NULL;
+
+}
+
 void videoListType::searchVideoList(string title, bool& found,  
                          nodeType<videoType>* &current) const
 {
