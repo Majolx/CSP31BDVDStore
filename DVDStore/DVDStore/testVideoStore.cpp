@@ -3,7 +3,7 @@
 #include <string>
 #include "videoType.h" 
 #include "videoListType.h"
-#include "customerListType.h"
+#include "CustomerBTreeType.h"
 
 using namespace std; 
 
@@ -20,7 +20,7 @@ int main()
 	string accountNum;
 	string firstName = "", lastName = "", accNum = "";
 	CustomerType newPerson;
-	customerListType customer;
+	CustomerBTreeType customer;
     
 	ifstream infile;
 
@@ -38,7 +38,7 @@ int main()
     infile.close();
 	
 	//pointer to videoList
-	customer.setVideoList(videoList);
+	//customer.setVideoList(videoList);
 
         //show the menu
     displayMenu();

@@ -39,6 +39,15 @@
     <ClInclude Include="RentedDvdList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bSearchTreeType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomerBTreeType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="binaryTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="testVideoStore.cpp">

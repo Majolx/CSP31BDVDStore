@@ -25,10 +25,18 @@ public:
 	void printDvdRented(CustomerType customer);
 	bool operator==(const CustomerType other);
 	bool operator!=(const CustomerType other);
+	bool operator>(const CustomerType other);
+	bool operator<(const CustomerType other);
+	bool operator>=(const CustomerType other);
+	bool operator<=(const CustomerType other);
+
+	friend ostream& operator<<(ostream& os, const CustomerType other);
 
 	CustomerType();
+	CustomerType(string accountNumber);
 	CustomerType(string firstName, string lastName, string accNum);
 	
+	string setAccountNumber(string accountNumber);
 	string getAccountNumber() const;
 };
 
@@ -68,22 +76,38 @@ void CustomerType::printDvdRented(CustomerType customer)
 
 bool CustomerType::operator==(const CustomerType other)
 {
-	if (this->accountNumber == other.accountNumber &&
-		this->getFirstName() == other.getFirstName() &&
-		this->getLastName() == other.getLastName())
-		return true;
-	else
-		return false;
+	return this->accountNumber.compare(other.accountNumber) == 0;
 }
 
 bool CustomerType::operator!=(const CustomerType other)
 {
-	if (this->accountNumber != other.accountNumber &&
-		this->getFirstName() != other.getFirstName() &&
-		this->getLastName() != other.getLastName())
-		return true;
-	else
-		return false;
+	return this->accountNumber.compare(other.accountNumber) != 0;
+}
+
+bool CustomerType::operator<(const CustomerType other)
+{
+	return this->accountNumber.compare(other.accountNumber) < 0;
+}
+
+bool CustomerType::operator>(const CustomerType other)
+{
+	return this->accountNumber.compare(other.accountNumber) > 0;
+}
+
+bool CustomerType::operator<=(const CustomerType other)
+{
+	return this->accountNumber.compare(other.accountNumber) <= 0;
+}
+
+bool CustomerType::operator>=(const CustomerType other)
+{
+	return this->accountNumber.compare(other.accountNumber) >= 0;
+}
+
+ostream& operator<<(ostream& os, const CustomerType other)
+{
+	os << other.getAccountNumber() << " " << other.getLastName() << ", " << other.getFirstName();
+	return os;
 }
 
 string CustomerType::getAccountNumber() const
@@ -94,6 +118,11 @@ string CustomerType::getAccountNumber() const
 CustomerType::CustomerType()
 {
 	this->setNameAndAccountNumber("", "", "");
+}
+
+CustomerType::CustomerType(string accountNumber)
+{
+	this->accountNumber = accountNumber;
 }
 
 CustomerType::CustomerType(string firstName, string lastName, string accNum)

@@ -74,6 +74,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="binaryTree.h" />
+    <ClInclude Include="bSearchTreeType.h" />
+    <ClInclude Include="CustomerBTreeType.h" />
     <ClInclude Include="customerListType.h" />
     <ClInclude Include="CustomerType.h" />
     <ClInclude Include="linkedList.h" />
