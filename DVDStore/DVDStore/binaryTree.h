@@ -9,11 +9,11 @@ using namespace std;
 
     //Definition of the Node
 template <class elemType>
-struct nodeType
+struct node
 {
     elemType info;
-    nodeType<elemType> *lLink;
-    nodeType<elemType> *rLink;
+    node<elemType> *lLink;
+    node<elemType> *rLink;
 };
 	
     //Definition of the class
@@ -97,44 +97,44 @@ public:
       //Destructor
 
 protected:
-    nodeType<elemType>  *root;
+    node<elemType>  *root;
 
 private:
-    void copyTree(nodeType<elemType>* &copiedTreeRoot,
-                  nodeType<elemType>* otherTreeRoot);
+    void copyTree(node<elemType>* &copiedTreeRoot,
+                  node<elemType>* otherTreeRoot);
       //Makes a copy of the binary tree to which 
       //otherTreeRoot points. 
       //Postcondition: The pointer copiedTreeRoot points to
       //               the root of the copied binary tree.
 
-    void destroy(nodeType<elemType>* &p);
+    void destroy(node<elemType>* &p);
       //Function to destroy the binary tree to which p points. 
       //Postcondition: Memory space occupied by each node, in 
       //               the binary tree to which p points, is 
       //               deallocated.
       //               p = NULL;
 
-    void inorder(nodeType<elemType> *p) const;
+    void inorder(node<elemType> *p) const;
       //Function to do an inorder traversal of the binary
       //tree to which p points.  
       //Postcondition: Nodes of the binary tree, to which p
       //               points, are printed in inorder sequence.
 
-    void preorder(nodeType<elemType> *p) const;
+    void preorder(node<elemType> *p) const;
       //Function to do a preorder traversal of the binary
       //tree to which p points.  
       //Postcondition: Nodes of the binary tree, to which p
       //               points, are printed in preorder 
       //               sequence.
 
-    void postorder(nodeType<elemType> *p) const;
+    void postorder(node<elemType> *p) const;
       //Function to do a postorder traversal of the binary
       //tree to which p points.  
       //Postcondition: Nodes of the binary tree, to which p
       //               points, are printed in postorder 
       //               sequence.
 
-    int height(nodeType<elemType> *p) const;
+    int height(node<elemType> *p) const;
       //Function to determine the height of the binary tree
       //to which p points. 
       //Postcondition: Height of the binary tree to which 
@@ -144,13 +144,13 @@ private:
       //Function to determine the larger of x and y.
       //Postcondition: Returns the larger of x and y.
 
-    int nodeCount(nodeType<elemType> *p) const;
+    int nodeCount(node<elemType> *p) const;
       //Function to determine the number of nodes in 
       //the binary tree to which p points. 
       //Postcondition: The number of nodes in the binary 
       //               tree to which p points is returned.
 
-    int leavesCount(nodeType<elemType> *p) const;
+    int leavesCount(node<elemType> *p) const;
       //Function to determine the number of leaves in  
       //the binary tree to which p points 
       //Postcondition: The number of leaves in the binary 
@@ -209,14 +209,14 @@ int binaryTreeType<elemType>::treeLeavesCount() const
 
 template <class elemType>
 void  binaryTreeType<elemType>::copyTree
-                       (nodeType<elemType>* &copiedTreeRoot,
-                        nodeType<elemType>* otherTreeRoot)
+                       (node<elemType>* &copiedTreeRoot,
+                        node<elemType>* otherTreeRoot)
 {
     if (otherTreeRoot == NULL)
         copiedTreeRoot = NULL;
     else
     {
-        copiedTreeRoot = new nodeType<elemType>;
+        copiedTreeRoot = new node<elemType>;
         copiedTreeRoot->info = otherTreeRoot->info;
         copyTree(copiedTreeRoot->lLink, otherTreeRoot->lLink);
         copyTree(copiedTreeRoot->rLink, otherTreeRoot->rLink);
@@ -225,7 +225,7 @@ void  binaryTreeType<elemType>::copyTree
 
 template <class elemType>
 void binaryTreeType<elemType>::inorder
-                              (nodeType<elemType> *p) const
+                              (node<elemType> *p) const
 {
     if (p != NULL)
     {
@@ -237,7 +237,7 @@ void binaryTreeType<elemType>::inorder
 
 template <class elemType>
 void binaryTreeType<elemType>::preorder
-                              (nodeType<elemType> *p) const
+                              (node<elemType> *p) const
 {
     if (p != NULL)
     {
@@ -249,7 +249,7 @@ void binaryTreeType<elemType>::preorder
 
 template <class elemType>
 void binaryTreeType<elemType>::postorder
-                              (nodeType<elemType> *p) const
+                              (node<elemType> *p) const
 {
     if (p != NULL)
     {
@@ -276,7 +276,7 @@ const binaryTreeType<elemType>& binaryTreeType<elemType>::
 }
 
 template <class elemType>
-void  binaryTreeType<elemType>::destroy(nodeType<elemType>* &p)
+void  binaryTreeType<elemType>::destroy(node<elemType>* &p)
 {
     if (p != NULL)
     {
@@ -313,7 +313,7 @@ binaryTreeType<elemType>::~binaryTreeType()
 
 template<class elemType>
 int binaryTreeType<elemType>::height
-                             (nodeType<elemType> *p) const
+                             (node<elemType> *p) const
 {
     if (p == NULL)
         return 0;
@@ -331,7 +331,7 @@ int binaryTreeType<elemType>::max(int x, int y) const
 }
 
 template <class elemType>
-int binaryTreeType<elemType>::nodeCount(nodeType<elemType> *p) const
+int binaryTreeType<elemType>::nodeCount(node<elemType> *p) const
 {
     cout << "Write the definition of the function nodeCount."
          << endl;
@@ -340,7 +340,7 @@ int binaryTreeType<elemType>::nodeCount(nodeType<elemType> *p) const
 }
 
 template <class elemType>
-int binaryTreeType<elemType>::leavesCount(nodeType<elemType> *p) const
+int binaryTreeType<elemType>::leavesCount(node<elemType> *p) const
 {
     cout << "Write the definition of the function leavesCount."
          << endl;

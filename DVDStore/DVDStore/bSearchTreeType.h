@@ -45,7 +45,7 @@ public:
 	elemType& getNode(const elemType& node);
 
 private:
-    void deleteFromTree(nodeType<elemType>* &p);
+    void deleteFromTree(node<elemType>* &p);
       //Function to delete the node to which p points is 
       //deleted from the binary search tree.
       //Postcondition: The node to which p points is deleted
@@ -57,7 +57,7 @@ template <class elemType>
 bool bSearchTreeType<elemType>::search
                     (const elemType& searchItem) const
 {
-    nodeType<elemType> *current = NULL;
+    node<elemType> *current = NULL;
     bool found = false;
 
     if (_base(root) == NULL)
@@ -83,8 +83,8 @@ bool bSearchTreeType<elemType>::search
 template <class elemType>
 void bSearchTreeType<elemType>::insert
                  (const elemType& insertItem)  {
-    nodeType<elemType> *current = NULL,*trailCurrent = NULL, *newNode = NULL;  
-    newNode = new nodeType<elemType>;
+    node<elemType> *current = NULL,*trailCurrent = NULL, *newNode = NULL;  
+    newNode = new node<elemType>;
     newNode->info = insertItem;
     newNode->lLink = NULL;
     newNode->rLink = NULL;
@@ -114,8 +114,8 @@ void bSearchTreeType<elemType>::insert
 template <class elemType>
 void bSearchTreeType<elemType>::deleteNode
                                 (const elemType& deleteItem)  {
-    nodeType<elemType> *current = NULL; //pointer to traverse the tree
-    nodeType<elemType> *trailCurrent = NULL; //pointer behind current
+    node<elemType> *current = NULL; //pointer to traverse the tree
+    node<elemType> *trailCurrent = NULL; //pointer behind current
     bool found = false;
 
     if (_base(root) == NULL)
@@ -156,9 +156,9 @@ void bSearchTreeType<elemType>::deleteNode
 
 template <class elemType>
 void bSearchTreeType<elemType>::deleteFromTree
-                                 (nodeType<elemType>* &p)
+                                 (node<elemType>* &p)
 {
-    nodeType<elemType> *cur = NULL,*prev = NULL,*temp = NULL;
+    node<elemType> *cur = NULL,*prev = NULL,*temp = NULL;
     if (p == NULL)
         cout << "Error: The node to be deleted is NULL.\n";
     else if (p->lLink == NULL && p->rLink == NULL)    {

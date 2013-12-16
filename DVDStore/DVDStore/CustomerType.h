@@ -36,7 +36,7 @@ public:
 	CustomerType(string accountNumber);
 	CustomerType(string firstName, string lastName, string accNum);
 	
-	string setAccountNumber(string accountNumber);
+	void setAccountNumber(string accountNum);
 	string getAccountNumber() const;
 };
 
@@ -108,6 +108,11 @@ ostream& operator<<(ostream& os, const CustomerType other)
 {
 	os << other.getAccountNumber() << " " << other.getLastName() << ", " << other.getFirstName();
 	return os;
+}
+
+void CustomerType::setAccountNumber(string accountNum)
+{
+	accountNumber = accountNum;
 }
 
 string CustomerType::getAccountNumber() const
