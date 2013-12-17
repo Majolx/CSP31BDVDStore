@@ -59,7 +59,7 @@ void CustomerBTreeType::rentDvd(string accountNum, string title)
 {
 	CustomerType customer;
 	customer.setAccountNumber(accountNum);
-	customer = getNode(customer);
+	getNode(customer);
 
 	customer.rentDVD(title);
 }
@@ -68,7 +68,7 @@ void CustomerBTreeType::returnDvd(string accountNum, string title)
 {
 	CustomerType customer;
 	customer.setAccountNumber(accountNum);
-	customer = getNode(customer);
+	getNode(customer);
 
 	customer.returnDVD(title);
 }

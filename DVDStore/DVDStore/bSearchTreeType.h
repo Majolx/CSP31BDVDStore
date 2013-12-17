@@ -42,7 +42,7 @@ public:
       //               is not in the binary tree, an appropriate
       //               message is printed.
 
-	elemType& getNode(const elemType& node);
+	void getNode(elemType& node);
 
 private:
     void deleteFromTree(node<elemType>* &p);
@@ -52,6 +52,32 @@ private:
       //               from the binary search tree.
 };
 
+template <class elemType>
+void bSearchTreeType<elemType>::getNode(elemType& searchItem)
+{
+	node<elemType> *current = NULL;
+	bool found = false;
+
+	if (treeHeight() == NULL)
+		cout << "The tree is empty." << endl;
+	else
+	{
+		current = _base(root);
+
+		while (current != NULL && !found)
+		{
+			if (current->info == searchItem)
+				found == true;
+			else if (current->info > searchItem)
+				current = current->lLink;
+			else
+				current = current->rLink;
+		}
+	}
+
+	if (found)
+		searchItem = current->info;
+}
 
 template <class elemType>
 bool bSearchTreeType<elemType>::search

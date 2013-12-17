@@ -29,6 +29,7 @@ public:
 	bool operator<(const CustomerType other);
 	bool operator>=(const CustomerType other);
 	bool operator<=(const CustomerType other);
+	CustomerType operator=(const CustomerType other);
 
 	friend ostream& operator<<(ostream& os, const CustomerType other);
 
@@ -74,6 +75,10 @@ void CustomerType::printDvdRented(CustomerType customer)
 	customer.rentedDvd.printDvDList();
 }
 
+
+// ================================================================ /
+// Operator Overloads                                               /
+// =================================================================/
 bool CustomerType::operator==(const CustomerType other)
 {
 	return this->accountNumber.compare(other.accountNumber) == 0;
@@ -102,6 +107,12 @@ bool CustomerType::operator<=(const CustomerType other)
 bool CustomerType::operator>=(const CustomerType other)
 {
 	return this->accountNumber.compare(other.accountNumber) >= 0;
+}
+
+CustomerType CustomerType::operator=(const CustomerType other)
+{
+	CustomerType newCustomer(other.getFirstName(), other.getLastName(), other.getAccountNumber());
+	return newCustomer;
 }
 
 ostream& operator<<(ostream& os, const CustomerType other)
