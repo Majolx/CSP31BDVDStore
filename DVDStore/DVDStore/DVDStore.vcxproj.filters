@@ -33,9 +33,6 @@
     <ClInclude Include="PersonType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="customerListType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RentedDvdList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
