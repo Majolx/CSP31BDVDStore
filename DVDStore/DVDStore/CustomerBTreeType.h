@@ -31,7 +31,36 @@ private:
 
 void CustomerBTreeType::newCustomer(const CustomerType& newPerson)
 {
-	insert(newPerson);
+	node<CustomerType> *newNode;
+	node<CustomerType> *current;
+
+	newNode = new node<CustomerType>;
+	newNode->info = newPerson;
+	newNode->lLink = NULL;
+	newNode->rLink = NULL;
+	current = root;
+
+
+	if (root == NULL)
+		root = newNode;
+	else
+	{
+		if (newNode->info.getAccountNumber() > root->info.getAccountNumber())
+		{
+			while (current != NULL)
+				current = current->rLink;
+		}
+		else 
+		{
+			while (current != NULL)
+				current = current->lLink;
+		}
+
+		if (current == NULL)
+		{
+			current = newNode;
+		}
+	}
 }
 
 void CustomerBTreeType::deleteAccount(string accountNumber)
@@ -53,7 +82,10 @@ bool CustomerBTreeType::searchAccount(string accNum)
 
 void CustomerBTreeType::printCustomerInfo()
 {
-	this->inorderTraversal();
+	if (root == NULL)
+		cout << "Empty List." << endl << endl;
+	else
+		this->inorderTraversal();
 }
 
 void CustomerBTreeType::rentDvd(string accountNum, string title)

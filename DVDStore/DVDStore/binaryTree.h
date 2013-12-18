@@ -98,7 +98,7 @@ public:
       //Destructor
 
 protected:
-    node<CustomerType>  *root;
+    node<elemType>  *root;
 
 private:
     void copyTree(node<elemType>* &copiedTreeRoot,

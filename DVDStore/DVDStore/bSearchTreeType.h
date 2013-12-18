@@ -67,7 +67,7 @@ void bSearchTreeType<elemType>::getNode(elemType& searchItem)
 		while (current != NULL && !found)
 		{
 			if (current->info == searchItem)
-				found == true;
+				found = true;
 			else if (current->info > searchItem)
 				current = current->lLink;
 			else
