@@ -120,6 +120,7 @@ ostream& operator<<(ostream& os, const CustomerType other)
 	return os;
 }
 
+// Print Account Information
 void CustomerType::printAccountInformation()
 {
 	cout << "Name: ";
@@ -128,11 +129,13 @@ void CustomerType::printAccountInformation()
 	rentedDvd.printDvDList();
 }
 
+// Print Account Number
 void CustomerType::printAccountNumber()
 {
 	cout << "Account#: " << accountNumber << endl;
 }
 
+// Print Rented DVD
 void CustomerType::printDvdRented(CustomerType customer)
 {
 	customer.rentedDvd.printDvDList();
