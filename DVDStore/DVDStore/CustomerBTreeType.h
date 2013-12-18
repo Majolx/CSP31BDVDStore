@@ -50,6 +50,8 @@ private:
 	videoListType dvdList;
 };
 
+
+// Grow a new customer onto the tree
 void CustomerBTreeType::newCustomer(const CustomerType& newPerson)
 {
 	node<CustomerType> *newNode;
@@ -96,6 +98,8 @@ void CustomerBTreeType::newCustomer(const CustomerType& newPerson)
 	}
 }
 
+
+// Prunes an account from the tree
 void CustomerBTreeType::deleteAccount(string accountNumber)
 {
 	CustomerType account;
@@ -105,6 +109,8 @@ void CustomerBTreeType::deleteAccount(string accountNumber)
 		deleteNode(account);
 }
 
+
+// Searches for an account 
 bool CustomerBTreeType::searchAccount(string accNum)
 {
 	CustomerType account;
@@ -113,6 +119,8 @@ bool CustomerBTreeType::searchAccount(string accNum)
 	return search(account);
 }
 
+
+// Prints a list of all customers
 void CustomerBTreeType::printCustomerInfo()
 {
 	if (root == NULL)
@@ -121,6 +129,8 @@ void CustomerBTreeType::printCustomerInfo()
 		this->inorderTraversal();
 }
 
+
+// Rents a DVD to the customer
 void CustomerBTreeType::rentDvd(string accountNum, string title)
 {
 	node<CustomerType> *current;
@@ -163,6 +173,8 @@ void CustomerBTreeType::rentDvd(string accountNum, string title)
 	current->info.rentDVD(title);
 }
 
+
+// Return a DVD out of the customer's inventory
 void CustomerBTreeType::returnDvd(string accountNum, string title)
 {
 	node<CustomerType> *current;
