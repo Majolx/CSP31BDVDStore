@@ -127,6 +127,7 @@ void runMenu()
 	CustomerType newPerson;
 	CustomerBTreeType customer;
 	string accountNum;
+	string firstName = "", lastName = "", accNum = "";
 
 	string title;
 
@@ -234,7 +235,7 @@ void runMenu()
 
 
 		case 7:							// Add/Remove a customer account
-			string firstName = "", lastName = "", accNum = "";
+			
 
 			int selection;
 			cout << "(1) Add or (2) Delete: ";
