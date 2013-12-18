@@ -7,6 +7,7 @@
 
 #include "videoListType.h"
 #include "videoType.h"
+#include "binaryTree.h"
 #include "bSearchTreeType.h"
 #include "CustomerType.h"
 #include <iostream>
@@ -52,7 +53,7 @@ bool CustomerBTreeType::searchAccount(string accNum)
 
 void CustomerBTreeType::printCustomerInfo()
 {
-	inorderTraversal();
+	this->inorderTraversal();
 }
 
 void CustomerBTreeType::rentDvd(string accountNum, string title)

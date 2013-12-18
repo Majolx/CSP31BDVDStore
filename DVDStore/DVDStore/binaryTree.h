@@ -4,6 +4,7 @@
 #define H_binaryTree
 
 #include <iostream>
+#include "CustomerType.h"
 
 using namespace std; 
 
@@ -97,7 +98,7 @@ public:
       //Destructor
 
 protected:
-    node<elemType>  *root;
+    node<CustomerType>  *root;
 
 private:
     void copyTree(node<elemType>* &copiedTreeRoot,
@@ -114,7 +115,7 @@ private:
       //               deallocated.
       //               p = NULL;
 
-    void inorder(node<elemType> *p) const;
+    void inorder(node<CustomerType> *p) const;
       //Function to do an inorder traversal of the binary
       //tree to which p points.  
       //Postcondition: Nodes of the binary tree, to which p
@@ -225,12 +226,12 @@ void  binaryTreeType<elemType>::copyTree
 
 template <class elemType>
 void binaryTreeType<elemType>::inorder
-                              (node<elemType> *p) const
+                              (node<CustomerType> *p) const
 {
     if (p != NULL)
     {
         inorder(p->lLink);
-        cout << p->info << " ";
+		p->info.printAccountInformation();
         inorder(p->rLink);
     }
 }
